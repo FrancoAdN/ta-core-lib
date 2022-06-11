@@ -3,7 +3,6 @@
   "version": "0.0.2",
   "description": "Travelers App Core Lib",
   "author": "Franco di Napoli",
-  "private": "false",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/francoadn/ta-core-lib.git"
