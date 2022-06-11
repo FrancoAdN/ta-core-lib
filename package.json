@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Travelers App Core Lib",
   "author": "Franco di Napoli",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@francoadn"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/francoadn/ta-core-lib.git"
@@ -75,5 +72,9 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-security": "^1.4.0",
     "prettier": "^2.3.2"
-  }
+  },
+  "files": [
+    "dist",
+    "index.js"
+  ]
 }
