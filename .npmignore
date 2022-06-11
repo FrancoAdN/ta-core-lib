@@ -1,0 +1,17 @@
+# source
+docs
+coverage
+lib
+test
+.prettierrc
+index.ts
+jest.config.js
+package-lock.json
+pull_request_template.md
+tsconfig.build.json
+tsconfig.json
+tslint.json
+jest_html_reporters.html
+*.log
+.scannerwork
+jest_html_reporters.html
