@@ -7,6 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/francoadn/ta-core-lib.git"
   },
+  "main": "dist",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "lint-md": "remark .",
