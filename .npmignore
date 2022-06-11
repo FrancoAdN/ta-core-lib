@@ -1,7 +1,6 @@
 # source
 docs
-coverage
-lib
+coverages
 test
 .prettierrc
 index.ts
