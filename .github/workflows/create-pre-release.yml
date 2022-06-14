@@ -23,7 +23,6 @@ jobs:
 
       - name: "Publish pre-release 🚀"
         run: .github/prerelease/prerelease.sh
-        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
