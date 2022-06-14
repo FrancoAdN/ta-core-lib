@@ -1,0 +1,31 @@
+name: "Pre-release 🚀"
+
+on:
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  pre-release:
+    name: Pre-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org
+          scope: '@FrancoAdN'
+
+      - name: Install NPM Dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: "Publish pre-release 🚀"
+        run: .github/prerelease/prerelease.sh
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Upload tags
+        run: .github/prerelease/publish-tags.sh
