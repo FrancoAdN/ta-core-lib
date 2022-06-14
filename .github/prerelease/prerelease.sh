@@ -15,3 +15,5 @@ fi
 
 echo "Tagging next pre-release v$TAG"
 git tag "v$TAG"
+
+npm publish --access public
