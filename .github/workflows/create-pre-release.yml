@@ -17,7 +17,7 @@ jobs:
           scope: '@FrancoAdN'
           
       - name: Set git credentials
-        run: .github/common/setup-git.sh
+        run: .github/prerelease/setup-git.sh
 
       - name: Install NPM Dependencies
         run: npm ci
