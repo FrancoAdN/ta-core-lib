@@ -36,4 +36,10 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Upload tags
-        run: sh .github/prerelease/publish-tags.sh
+        run: | 
+          mapfile -t LATEST_TAGS < <( git tag --contains )
+          for TAG in "${LATEST_TAGS[@]}"; do
+            echo "Uploading tag $TAG"
+            git push origin $TAG
+          done
+
