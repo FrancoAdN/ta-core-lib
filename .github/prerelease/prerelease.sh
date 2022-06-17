@@ -18,8 +18,4 @@ git tag "v$TAG"
 
 npm version --no-git-tag-version "$TAG"
 
-git add . && git commit -am "version update"
-
-git push && git push --tags
-
 npm publish --access public
