@@ -2,6 +2,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ObjectId } from 'mongodb';
 import { User, UserDocument } from '../schemas';
+import { EmailType } from '../../utils';
 
 export class AuthRepository {
   constructor(
@@ -12,7 +13,7 @@ export class AuthRepository {
     return this.userModel.create(user);
   }
 
-  findOneByEmail(email: string): Promise<User> {
+  findOneByEmail(email: EmailType): Promise<User> {
     return this.userModel
       .findOne({
         email,

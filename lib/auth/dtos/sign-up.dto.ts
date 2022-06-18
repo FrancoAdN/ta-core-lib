@@ -6,6 +6,7 @@ import {
   IsEmail,
   IsDefined,
 } from 'class-validator';
+import { EmailType } from '../../utils';
 
 export class SignUpDto {
   @IsDefined()
@@ -38,5 +39,5 @@ export class SignUpDto {
   @IsDefined()
   @IsString()
   @IsEmail()
-  email: string;
+  email: EmailType;
 }

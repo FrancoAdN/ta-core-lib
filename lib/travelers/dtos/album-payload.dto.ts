@@ -32,6 +32,6 @@ export class AlbumPayloadDto {
   @IsArray()
   @ArrayNotEmpty()
   @IsMongoId({ each: true })
-  @Type(() => ObjectId)
+  @Type(/* istanbul ignore next */ () => ObjectId)
   images: ObjectId[];
 }

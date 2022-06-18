@@ -9,7 +9,7 @@ import { AuthService } from '../services';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly authService: AuthService) {
     super({
-      secretOrKey: process.env.JWT_SECRET_KEY || '',
+      secretOrKey: /* istanbul ignore next */ process.env.JWT_SECRET_KEY || '',
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     });
   }

@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ImageDocument, Image } from '../schemas';
