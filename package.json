@@ -20,7 +20,7 @@
     "test:cov": "jest --coverage --runInBand",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:ci:cov": "jest --runInBand --ci --reporters=jest-html-reporter --coverageReporters=lcov --coverage",
+    "test:ci:cov": "jest --runInBand --ci --reporters=jest-html-reporters --coverageReporters=lcov --coverage",
     "clean:dist": "rimraf dist",
     "clean:lock": "rimraf package-lock.json",
     "precise-commits": "precise-commits --check-only --whitelist=\"lib/**/*.ts\"",
@@ -47,14 +47,15 @@
     "mongoose": "^5.13.5",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "rimraf": "^3.0.2",
-    "rxjs": "^7.5.5",
-    "typescript": "4.4.4",
-    "remark-cli": "^8.0.1",
     "precise-commits": "^1.0.2",
+    "reflect-metadata": "^0.1.13",
+    "remark-cli": "^8.0.1",
     "remark-lint": "^7.0.1",
     "remark-preset-lint-recommended": "^4.0.1",
-    "ts-node": "^10.4.0"
+    "rimraf": "^3.0.2",
+    "rxjs": "^7.5.5",
+    "ts-node": "^10.4.0",
+    "typescript": "4.4.4"
   },
   "devDependencies": {
     "@types/express": "^4.16.0",
@@ -71,7 +72,11 @@
     "eslint-plugin-json": "^3.0.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-security": "^1.4.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "ts-jest": "^28.0.4",
+    "jest": "^28.1.1",
+    "jest-html-reporters": "^3.0.9",
+    "@types/jest": "^28.1.1"
   },
   "files": [
     "dist",
