@@ -80,20 +80,16 @@ async function run() {
     const { context = {} } = github;
     const { pull_request } = context.payload;
 
-    console.log('PR:');
-    console.log(pull_request);
-
-    console.log('CTX:');
-    console.log(context);
+    const author = {
+      avatar: pull_request.avatar_url,
+      username: pull_request.login,
+    };
 
     return {
-      title: 'feat: CL-12 Unit tests',
-      link: 'https://github.com/FrancoAdN/ta-core-lib/pull/16',
-      author: {
-        username: 'FrancoAdN',
-        avatar: client.user.avatarURL,
-      },
-      filesChanged: 16,
+      title: pull_request.title,
+      link: pull_request.html_url,
+      author,
+      filesChanged: pull_request.changed_files,
     };
   };
 
@@ -105,6 +101,8 @@ async function run() {
       PR: getPRinfo(),
       coverage: getCoverageInfo(),
     };
+
+    console.log(messageInfo);
 
     const channel = client.channels.cache.find((ch) => ch.name === CHANNEL);
     await channel.send({
