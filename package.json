@@ -33,7 +33,6 @@
     }
   },
   "dependencies": {
-    "@actions/core": "^1.9.0",
     "@actions/github": "^5.0.3",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
