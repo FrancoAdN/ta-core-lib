@@ -8,7 +8,7 @@ const github = require('@actions/github');
 
 async function run() {
   // const githubToken = proccess.env.GITHUB_TOKEN;
-  const discordToken = proccess.env.DISCORD_TOKEN;
+  const discordToken = process.env.DISCORD_TOKEN;
 
   // const octokit = github.getOctokit(githubToken);
 
