@@ -17,36 +17,36 @@ describe('AuthRepository', () => {
     jest.clearAllMocks();
   });
 
-  describe('signUp', () => {
-    it('should create the entity', async () => {
-      const modelMock = MockType<Model<UserDocument>>({
-        create: jest.fn().mockReturnValue(userMock),
-      });
+  // describe('signUp', () => {
+  //   it('should create the entity', async () => {
+  //     const modelMock = MockType<Model<UserDocument>>({
+  //       create: jest.fn().mockReturnValue(userMock),
+  //     });
 
-      const repository = new AuthRepository(modelMock);
-      await repository.signUp(userMock);
-      expect(modelMock.create).toHaveBeenCalledWith(userMock);
-    });
-  });
+  //     const repository = new AuthRepository(modelMock);
+  //     await repository.signUp(userMock);
+  //     expect(modelMock.create).toHaveBeenCalledWith(userMock);
+  //   });
+  // });
 
-  describe('findOneByEmail', () => {
-    it('should return a user entity given its email', async () => {
-      mockQuery.exec.mockReturnValue(userMock);
-      mockQuery.select.mockReturnThis();
+  // describe('findOneByEmail', () => {
+  //   it('should return a user entity given its email', async () => {
+  //     mockQuery.exec.mockReturnValue(userMock);
+  //     mockQuery.select.mockReturnThis();
 
-      const modelMock = MockType<Model<UserDocument>>({
-        findOne: jest.fn().mockReturnValue(mockQuery),
-      });
+  //     const modelMock = MockType<Model<UserDocument>>({
+  //       findOne: jest.fn().mockReturnValue(mockQuery),
+  //     });
 
-      const repository = new AuthRepository(modelMock);
-      await repository.findOneByEmail('any@domain.com');
-      expect(modelMock.findOne).toHaveBeenCalledWith({
-        email: 'any@domain.com',
-      });
-      expect(mockQuery.select).toHaveBeenCalledWith('_id password');
-      expect(mockQuery.exec).toHaveBeenCalled();
-    });
-  });
+  //     const repository = new AuthRepository(modelMock);
+  //     await repository.findOneByEmail('any@domain.com');
+  //     expect(modelMock.findOne).toHaveBeenCalledWith({
+  //       email: 'any@domain.com',
+  //     });
+  //     expect(mockQuery.select).toHaveBeenCalledWith('_id password');
+  //     expect(mockQuery.exec).toHaveBeenCalled();
+  //   });
+  // });
 
   describe('findById', () => {
     it('should return a user entity given its id', async () => {

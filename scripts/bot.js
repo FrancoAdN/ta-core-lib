@@ -7,10 +7,7 @@ const client = new Client({
 const github = require('@actions/github');
 
 async function run() {
-  // const githubToken = proccess.env.GITHUB_TOKEN;
   const discordToken = process.env.DISCORD_TOKEN;
-
-  // const octokit = github.getOctokit(githubToken);
 
   const createEmbedMessage = (info) => {
     return new MessageEmbed()
@@ -30,10 +27,14 @@ async function run() {
       .addField('Files changed:', `${info.PR.filesChanged}`)
       .addField('Test coverage:', `status: ${info.coverage.status}!`)
       .addFields(
-        { name: '% Statements', value: info.coverage.statements, inline: true },
-        { name: '% Branch', value: info.coverage.branch, inline: true },
-        { name: '% Functions', value: info.coverage.functions, inline: true },
-        { name: '% Lines', value: info.coverage.lines, inline: true },
+        {
+          name: '% Statements',
+          value: info.coverage.Statements,
+          inline: true,
+        },
+        { name: '% Branches', value: info.coverage.Branches, inline: true },
+        { name: '% Functions', value: info.coverage.Functions, inline: true },
+        { name: '% Lines', value: info.coverage.Lines, inline: true },
       )
       .addField('\u200b', '\u200b')
       .setTimestamp()
@@ -102,8 +103,6 @@ async function run() {
       PR: getPRinfo(),
       coverage: getCoverageInfo(),
     };
-
-    console.log(messageInfo);
 
     const channel = client.channels.cache.find((ch) => ch.name === CHANNEL);
     await channel.send({
