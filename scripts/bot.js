@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { parse } = require('node-html-parser');
 const { Client, Intents, MessageEmbed } = require('discord.js');
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
@@ -29,12 +28,24 @@ async function run() {
       .addFields(
         {
           name: '% Statements',
-          value: info.coverage.Statements,
+          value: `${info.coverage.statements}`,
           inline: true,
         },
-        { name: '% Branches', value: info.coverage.Branches, inline: true },
-        { name: '% Functions', value: info.coverage.Functions, inline: true },
-        { name: '% Lines', value: info.coverage.Lines, inline: true },
+        {
+          name: '% Branches',
+          value: `${info.coverage.branches}`,
+          inline: true,
+        },
+        {
+          name: '% Functions',
+          value: `${info.coverage.functions}`,
+          inline: true,
+        },
+        {
+          name: '% Lines',
+          value: `${info.coverage.lines}`,
+          inline: true,
+        },
       )
       .addField('\u200b', '\u200b')
       .setTimestamp()
@@ -47,32 +58,34 @@ async function run() {
     const DEFAULT = {
       status: 'FAILED',
       statements: '0',
-      branch: '0',
+      branches: '0',
       functions: '0',
       lines: '0',
     };
-    const COVERAGE_PATH = 'coverage/lcov-report/utils/index.html';
+    const COVERAGE_PATH = 'coverage/coverage-summary.json';
     const COVERAGE_THRESHOLD = 98;
     if (fs.existsSync(COVERAGE_PATH)) {
-      const data = fs.readFileSync(COVERAGE_PATH, {
-        encoding: 'utf8',
-        flag: 'r',
-      });
-      const root = parse(data);
-      const divs = root.querySelectorAll('.pad1y');
-      return divs.reduce(
-        (acc, curr) => {
-          const spans = curr.getElementsByTagName('span');
-          const cov = parseInt(spans[0].text.split('%')[0]);
-          if (cov < COVERAGE_THRESHOLD) acc.status = 'FAILED';
-          acc = {
-            ...acc,
-            [spans[1].text]: cov.toString(),
-          };
-          return acc;
-        },
-        { status: 'SUCCEED' },
-      );
+      const data = JSON.parse(fs.readFileSync(COVERAGE_PATH, 'utf8'));
+      let coverage = {
+        statements: data.total.statements.pct,
+        branches: data.total.branches.pct,
+        functions: data.total.functions.pct,
+        lines: data.total.lines.pct,
+      };
+
+      let status = 'SUCCEED';
+      for (const pct in coverage) {
+        if (coverage[pct] < COVERAGE_THRESHOLD) {
+          status = 'FAILED';
+          break;
+        }
+      }
+
+      coverage = {
+        ...coverage,
+        status,
+      };
+      return coverage;
     }
     return DEFAULT;
   };
@@ -102,8 +115,6 @@ async function run() {
       PR: getPRinfo(),
       coverage: getCoverageInfo(),
     };
-
-    console.log(messageInfo);
 
     const channel = client.channels.cache.find((ch) => ch.name === CHANNEL);
     await channel.send({

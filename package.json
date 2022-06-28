@@ -20,7 +20,7 @@
     "test:cov": "jest --coverage --runInBand",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:ci:cov": "jest --runInBand --ci --reporters=jest-html-reporters --coverageReporters=lcov --coverage",
+    "test:ci:cov": "jest --runInBand --ci --coverageReporters='json-summary' --coverage --no-cache",
     "clean:dist": "rimraf dist",
     "clean:lock": "rimraf package-lock.json",
     "precise-commits": "precise-commits --check-only --whitelist=\"lib/**/*.ts\"",

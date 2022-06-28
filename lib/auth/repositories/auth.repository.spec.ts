@@ -17,17 +17,17 @@ describe('AuthRepository', () => {
     jest.clearAllMocks();
   });
 
-  // describe('signUp', () => {
-  //   it('should create the entity', async () => {
-  //     const modelMock = MockType<Model<UserDocument>>({
-  //       create: jest.fn().mockReturnValue(userMock),
-  //     });
+  describe('signUp', () => {
+    it('should create the entity', async () => {
+      const modelMock = MockType<Model<UserDocument>>({
+        create: jest.fn().mockReturnValue(userMock),
+      });
 
-  //     const repository = new AuthRepository(modelMock);
-  //     await repository.signUp(userMock);
-  //     expect(modelMock.create).toHaveBeenCalledWith(userMock);
-  //   });
-  // });
+      const repository = new AuthRepository(modelMock);
+      await repository.signUp(userMock);
+      expect(modelMock.create).toHaveBeenCalledWith(userMock);
+    });
+  });
 
   // describe('findOneByEmail', () => {
   //   it('should return a user entity given its email', async () => {
