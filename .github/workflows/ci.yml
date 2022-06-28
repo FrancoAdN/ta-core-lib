@@ -34,6 +34,7 @@ jobs:
         run: npm run test:ci:cov
 
       - name: "Publish results"
+        if: always()
         run: npm run discord
         env:
           GITHUB_TOKEN: ${{ secrets.GH_CI_BOT_TOKEN }}
