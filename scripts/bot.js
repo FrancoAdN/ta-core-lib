@@ -120,7 +120,7 @@ async function run() {
     await channel.send({
       embeds: [createEmbedMessage(messageInfo)],
     });
-    process.exit(1);
+    process.exit();
   });
 
   client.login(discordToken);
