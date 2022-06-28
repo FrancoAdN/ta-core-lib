@@ -80,7 +80,6 @@ async function run() {
   const getPRinfo = () => {
     const { context = {} } = github;
     const { pull_request } = context.payload;
-    console.log(pull_request);
 
     const author = {
       avatar: pull_request.user.avatar_url,
@@ -103,6 +102,8 @@ async function run() {
       PR: getPRinfo(),
       coverage: getCoverageInfo(),
     };
+
+    console.log(messageInfo);
 
     const channel = client.channels.cache.find((ch) => ch.name === CHANNEL);
     await channel.send({
