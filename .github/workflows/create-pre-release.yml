@@ -28,6 +28,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Build package
+        run: npm run build 
+
       - name: "Publish pre-release 🚀"
         run: sh .github/scripts/prerelease.sh
         env:
