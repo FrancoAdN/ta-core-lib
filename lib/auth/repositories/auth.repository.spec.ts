@@ -10,6 +10,7 @@ describe('AuthRepository', () => {
     mockQuery = {
       select: jest.fn(),
       exec: jest.fn(),
+      sort: jest.fn(),
     };
   });
 
