@@ -8,6 +8,7 @@ describe('BaseRepository', () => {
   const mockQuery: MockQuery = {
     exec: jest.fn(),
     select: jest.fn(),
+    sort: jest.fn(),
   };
 
   class TestCommentRepository extends BaseRepository {

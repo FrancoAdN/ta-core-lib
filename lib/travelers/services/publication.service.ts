@@ -5,6 +5,7 @@ import { PublicationRepository } from '../repositories';
 import { ObjectId } from 'mongodb';
 import { AlbumService } from './album.service';
 import { FilterQuery } from 'mongoose';
+import { User } from '../../auth';
 
 @Injectable()
 export class PublicationService {
@@ -43,5 +44,12 @@ export class PublicationService {
     };
     await this.repository.findOne(filter, null, true);
     await this.repository.appendSeenBy(publicationId, userId);
+  }
+
+  findAllPublications(user: User): Promise<Publication[]> {
+    return this.repository.findAllPublications(
+      user._id.toHexString(),
+      user.following,
+    );
   }
 }

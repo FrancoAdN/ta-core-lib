@@ -15,7 +15,7 @@ export const MockType = <T>(options: Partial<T>): T => {
   return jest.fn(() => options as T)();
 };
 
-export type MockQuery = Record<'exec' | 'select', jest.Mock>;
+export type MockQuery = Record<'exec' | 'select' | 'sort', jest.Mock>;
 export type MockAggregate = Record<
   'match' | 'project' | 'unwind' | 'addFields' | 'exec' | 'lookup',
   jest.Mock
@@ -29,6 +29,8 @@ export const userMock = new User({
   name: 'any-name',
   password: 'any-pwd',
   username: 'any-username',
+  followers: ['any-follower'],
+  following: ['any-following'],
 });
 
 export const albumMock = new Album({

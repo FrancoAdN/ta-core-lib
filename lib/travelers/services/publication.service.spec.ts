@@ -1,3 +1,4 @@
+import { User } from '../../auth';
 import { MockType, objectIdMock } from '../../utils';
 import { PublicationPayloadDto } from '../dtos';
 import { PublicationRepository } from '../repositories';
@@ -11,6 +12,7 @@ describe('PublicationService', () => {
     appendSeenBy: jest.fn(),
     createOne: jest.fn(),
     findOne: jest.fn(),
+    findAllPublications: jest.fn(),
   });
 
   const albumServiceMock = MockType<AlbumService>({
@@ -62,6 +64,21 @@ describe('PublicationService', () => {
       expect(repositoryMock.appendSeenBy).toHaveBeenCalledWith(
         objectIdMock,
         'any-user',
+      );
+    });
+  });
+
+  describe('findAllPublications', () => {
+    it('should call the respository method', async () => {
+      const service = new PublicationService(repositoryMock, albumServiceMock);
+      const userMock = new User({
+        _id: objectIdMock,
+        following: ['any-user-id'],
+      });
+      await service.findAllPublications(userMock);
+      expect(repositoryMock.findAllPublications).toHaveBeenCalledWith(
+        userMock._id.toHexString(),
+        userMock.following,
       );
     });
   });
