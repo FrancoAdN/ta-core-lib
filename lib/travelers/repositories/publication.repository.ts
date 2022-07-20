@@ -21,4 +21,15 @@ export class PublicationRepository extends BaseRepository {
       .findOneAndUpdate({ _id: publicationId }, { $push: { seenBy: seenBy } })
       .exec();
   }
+
+  findAllPublications(
+    userId: string,
+    following: string[],
+  ): Promise<Publication[]> {
+    const owners: string[] = [userId, ...following];
+    return this.publicationModel
+      .find({ createdBy: { $in: owners } })
+      .sort({ createdAt: -1 })
+      .exec();
+  }
 }

@@ -7,6 +7,7 @@ describe('AlbumRepository', () => {
   const mockQuery: MockQuery = {
     exec: jest.fn(),
     select: jest.fn(),
+    sort: jest.fn(),
   };
   describe('findByOwner', () => {
     it('should call the model method', async () => {

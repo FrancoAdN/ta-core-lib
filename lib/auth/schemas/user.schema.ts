@@ -25,6 +25,11 @@ export class User {
 
   // @Prop({required: true})
   // avatar: string;
+  @Prop({ required: true, type: [String] })
+  following: string[];
+
+  @Prop({ required: true, type: [String] })
+  followers: string[];
 
   constructor(user: Partial<User> = {}) {
     Object.assign(this, user);
